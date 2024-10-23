@@ -1,0 +1,96 @@
+-- Tabla de animales
+CREATE TABLE animales (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100),
+    especie VARCHAR(100),
+    edad INT,
+    habitat VARCHAR(100),
+    fecha_ingreso DATE
+);
+
+-- Tabla de hábitats
+CREATE TABLE habitats (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100),
+    tipo VARCHAR(100),
+    temperatura DECIMAL(4,2),
+    capacidad INT
+);
+
+-- Tabla de cuidadores
+CREATE TABLE cuidadores (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100),
+    telefono VARCHAR(15),
+    turno VARCHAR(50),
+    experiencia INT
+);
+
+CREATE TABLE alimentacion (
+    animal_id INT,
+    tipo_comida VARCHAR(100) PRIMARY KEY,
+    cantidad DECIMAL(5,2),
+    frecuencia VARCHAR(100),
+    FOREIGN KEY (animal_id) REFERENCES animales(id)
+);
+CREATE TABLE visitas (
+    ticket INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_visitante VARCHAR(100),
+    fecha_visita DATE,
+    numero_personas INT,
+    recorrido VARCHAR(100)
+);
+INSERT INTO alimentacion (animal_id, tipo_comida, cantidad, frecuencia) VALUES
+(1, 'Heno', 5.00, 'Diaria'),
+(1, 'Frutas', 3.50, 'Diaria'),
+(2, 'Pescado', 2.00, 'Semanal'),
+(2, 'Carne', 1.50, 'Diaria'),
+(3, 'Granos', 4.00, 'Diaria'),
+(3, 'Verduras', 2.00, 'Diaria'),
+(4, 'Nueces', 1.00, 'Semanal'),
+(4, 'Insectos', 0.50, 'Diaria');
+
+INSERT INTO visitas (ticket, nombre_visitante, fecha_visita, numero_personas, recorrido) VALUES
+(NULL, 'Juan Pérez', '2024-10-01', 3, 'Recorrido 1'),
+(NULL, 'María López', '2024-10-02', 5, 'Recorrido 2'),
+(NULL, 'Carlos García', '2024-10-03', 2, 'Recorrido 3'),
+(NULL, 'Ana Torres', '2024-10-04', 4, 'Recorrido 1'),
+(NULL, 'Pedro Martínez', '2024-10-05', 1, 'Recorrido 2'),
+(NULL, 'Laura Sánchez', '2024-10-06', 6, 'Recorrido 3'),
+(NULL, 'Luis Rodríguez', '2024-10-07', 2, 'Recorrido 1'),
+(NULL, 'Sofía Gómez', '2024-10-08', 3, 'Recorrido 2');
+
+-- Insertar datos en la tabla de animales
+INSERT INTO animales (nombre, especie, edad, habitat, fecha_ingreso) VALUES
+('Simba', 'León', 5, 'Sabana', '2021-03-15'),
+('Dory', 'Pez Payaso', 2, 'Acuático', '2023-05-20'),
+('Melman', 'Jirafa', 7, 'Sabana', '2020-07-10'),
+('Alex', 'Tigre', 4, 'Bosque', '2019-08-23'),
+('Manny', 'Elefante', 10, 'Sabana', '2017-02-11'),
+('Gloria', 'Hipopótamo', 6, 'Río', '2022-01-05'),
+('Skipper', 'Pingüino', 3, 'Ártico', '2020-12-25'),
+('Julien', 'Lémur', 9, 'Selva', '2018-09-30');
+
+-- Insertar datos en la tabla de hábitats
+INSERT INTO habitats (nombre, tipo, temperatura, capacidad) VALUES
+('Sabana', 'Desértico', 28.5, 10),
+('Acuático', 'Acuático', 22.0, 50),
+('Bosque', 'Tropical', 24.0, 15),
+('Río', 'Ribereño', 26.0, 8),
+('Ártico', 'Polar', -5.0, 5),
+('Selva', 'Tropical', 30.0, 20),
+('Montaña', 'Frío', 10.0, 12),
+('Desierto', 'Caluroso', 35.0, 7);
+
+-- Insertar datos en la tabla de cuidadores
+INSERT INTO cuidadores (nombre, telefono, turno, experiencia) VALUES
+('Carlos López', '123456789', 'Mañana', 5),
+('Ana Gómez', '987654321', 'Tarde', 3),
+('Luis Pérez', '456123789', 'Noche', 10),
+('María Rodríguez', '789456123', 'Mañana', 7),
+('Jorge Torres', '321654987', 'Tarde', 4),
+('Lucía Díaz', '654987321', 'Noche', 6),
+('Pedro Morales', '852369741', 'Mañana', 8),
+('Elena Ruiz', '963852741', 'Tarde', 2);
+
+
